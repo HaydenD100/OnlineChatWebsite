@@ -1,0 +1,80 @@
+<!--Main Html page this page has the text window the message box and button too send message-->>
+
+
+<!DOCTYPE html>
+
+<html lang ="en">
+
+<head>
+    <title>
+        Server Test
+    </title>
+</head>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+   
+</style>
+
+
+
+<body onload="LoadMessages()" style = "background-color:rgb(255, 255, 255);" >
+    <h1 style="color:rgb(0, 0, 0);text-align:center;font-family:verdana;font-size:200%;"><b>Chatting</b></h1>
+    <p style="color:rgb(0, 0, 0);text-align:center;">Chatting server v1.0</p>
+    <hr>
+
+    <p style="color:rgb(0, 0, 0);text-align:center;font-size:150%;">Chat</p>
+    <table style="margin-left:auto;margin-right:auto;">
+        <tr style="height:400px;margin-left:auto;margin-right:auto;">
+            
+            <td onload = "LoadMessages()"style="width:400px; vertical-align:top" id ="chatbox"><pre>No Messages</pre></td>
+        </tr>
+    </table>
+
+    <form>
+      <h5>Name:</h5>
+      <input type="text" id="nameBox">
+      <h5>Message:</h5>
+        <input type="text" id="messageBox">
+    </form>
+    <button type="button" style="margin-left:auto;margin-right:auto;" onclick="loadDoc()"> Send Message </button>
+    
+    <script>
+
+
+          function loadDoc() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+               document.getElementById("chatbox").innerHTML = this.responseText;
+              }
+            };
+            xhttp.open("GET", "/name" + document.getElementById('nameBox').value , true);
+            xhttp.send();
+            
+            xhttp.open("GET", "/send" + document.getElementById('messageBox').value , true);
+            xhttp.send();
+            
+          }
+          function LoadMessages(){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+               document.getElementById("chatbox").innerHTML = this.responseText;
+              }
+            };
+            xhttp.open("GET", "/load", true);
+            xhttp.send();
+          }
+          
+         
+
+
+    </script>
+
+
+</body>
+
+</html>
