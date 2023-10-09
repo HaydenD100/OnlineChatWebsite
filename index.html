@@ -51,10 +51,9 @@
                document.getElementById("chatbox").innerHTML = this.responseText;
               }
             };
-            xhttp.open("GET", "/name" + document.getElementById('nameBox').value , true);
-            xhttp.send();
             
-            xhttp.open("GET", "/send" + document.getElementById('messageBox').value , true);
+            
+            xhttp.open("GET", "/send" + document.getElementById('messageBox').value + "name:" + document.getElementById('nameBox').value, true);
             xhttp.send();
             
           }
