@@ -15,23 +15,32 @@
         border: 1px solid black;
         border-collapse: collapse;
       }
+      #overflowTest {
+        background: #4CAF50;
+        color: white;
+        padding: 15px;
+        width: 50%;
+        height: 100px;
+        overflow: scroll;
+        border: 1px solid #ccc;
+      }
    
 </style>
 
 
 
+
+
 <body onload="LoadMessages()" style = "background-color:rgb(255, 255, 255);" >
-    <h1 style="color:rgb(0, 0, 0);text-align:center;font-family:verdana;font-size:200%;"><b>Chatting</b></h1>
+    <h1 style="color:rgb(0, 0, 0);text-align:center;font-family:verdana;font-size:150%;"><b>Chatting</b></h1>
     <p style="color:rgb(0, 0, 0);text-align:center;">Chatting server v1.0</p>
     <hr>
+    <div style="text-align:center;">
+    <button type="button" style="margin-left:auto;margin-right:auto;" onclick="LoadMessages()"> Refresh Messages </button>
+    </div>
 
-    <p style="color:rgb(0, 0, 0);text-align:center;font-size:150%;">Chat</p>
-    <table style="margin-left:auto;margin-right:auto;">
-        <tr style="height:400px;margin-left:auto;margin-right:auto;">
-            
-            <td onload = "LoadMessages()"style="width:400px; vertical-align:top" id ="chatbox"><pre>No Messages</pre></td>
-        </tr>
-    </table>
+    <div onload = "LoadMessages()" style="width:400px; height:400px; margin-left:auto;margin-right:auto; background-color:rgb(216, 216, 216); vertical-align:top; Overflow-y:scroll; word-wrap: break-word; overflow-x : hidden;" id="chatbox"></div>
+  
 
     <form>
       <h5>Name:</h5>
@@ -39,12 +48,12 @@
       <h5>Message:</h5>
         <input type="text" id="messageBox">
     </form>
-    <button type="button" style="margin-left:auto;margin-right:auto;" onclick="loadDoc()"> Send Message </button>
+    <button type="button" style="margin-left:auto;margin-right:auto;" onclick="SendMessage()"> Send Message </button>
     
     <script>
 
 
-          function loadDoc() {
+          function SendMessage() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
               if (this.readyState == 4 && this.status == 200) {

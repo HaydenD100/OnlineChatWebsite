@@ -16,7 +16,7 @@ const requestListener = function (req, res) {
 
         const fs = require('fs');
         var namePos = req.url.search("name:")
-        var name = req.url.substr(namePos + 5);
+        var name = decodeURI(namereq.url.substr(namePos + 5));
         if(name == "") name == "anonymous"
         
         
@@ -37,9 +37,7 @@ const requestListener = function (req, res) {
        
         
         res.setHeader("Content-Type", "text/html");
-
         res.writeHead(200);
-
         res.end("<html><body><pre>" + data +"\n" + name + ":"+  decodeURI(req.url.substr(5,namePos - 5)) +"<pre></body></html>");
         
     });
@@ -59,9 +57,7 @@ const requestListener = function (req, res) {
         }
         
         res.setHeader("Content-Type", "text/html");
-
         res.writeHead(200);
-
         res.end("<html><body><pre>" + data +"\n" + decodeURI(req.url.substr(5)) +"<pre></body></html>");
         
     });
@@ -90,4 +86,3 @@ fs.readFile(__dirname + "/index.html")
         console.error(`Could not read index.html file: ${err}`);
         process.exit(1);
     });
-
