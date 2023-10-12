@@ -28,7 +28,7 @@ const requestListener = function (req, res) {
 
         //get the name of the user who sent the request
         var namePos = req.url.search("name:")
-        var name = decodeURI(namereq.url.substr(namePos + 5));
+        var name = decodeURI(req.url.substr(namePos + 5));
         if(name == "") name = "anonymous"
         
         
